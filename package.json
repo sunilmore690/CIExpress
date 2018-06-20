@@ -1,17 +1,24 @@
 {
-  "name": "ciexpress",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "A bookstore API",
+  "main": "server.js",
+  "author": "Sam",
+  "license": "ISC",
   "dependencies": {
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5"
+    "body-parser": "^1.15.1",
+    "config": "^1.20.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.15",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha --timeout 10000"
   }
 }

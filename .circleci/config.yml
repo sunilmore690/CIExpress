@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    working_directory: /ciexpress
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install dependencies
+          command: |
+            pip install docker-compose==1.15.0
+      - run:
+          name: Run tests
+          command: |
+            mkdir /var/lib/mongodb
+            docker-compose up -d
+            docker-compose run ciexpress npm run test
+      - deploy:
+          name: Push application Docker image
+          command: |
+            docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+            docker tag ciexpress_ciexpress $DOCKER_HUB_USER_ID/ciexpress:$CIRCLE_SHA1
+            docker tag ciexpress_ciexpress $DOCKER_HUB_USER_ID/ciexpress:latest
+            docker push $DOCKER_HUB_USER_ID/ciexpress:$CIRCLE_SHA1
+            docker push $DOCKER_HUB_USER_ID/ciexpress:latest
