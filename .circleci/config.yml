@@ -2,6 +2,10 @@ version: 2
 jobs:
   build:
     working_directory: /ciexpress
+    general:
+      branches:
+        only:
+          - staging 
     docker:
       - image: docker:17.05.0-ce-git
     steps:
