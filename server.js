@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());                                    
 app.use(bodyParser.json({ type: 'application/json'}));  
 
-app.get("/", (req, res) => res.json({message: "Welcome to our Bookstore!"}));
+app.get("/", (req, res) => res.json({message: "Welcome to CIEXPRESS!"}));
 
 app.route("/book")
 	.get(book.getBooks)
